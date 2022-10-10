@@ -9,7 +9,7 @@ export const ADD_MOVIES = "ADD_MOVIES";
 //These are called action creators
 export function addMovies(movies) {
   return {
-    type: "ADD_MOVIES",
+    type: ADD_MOVIES,
     movies,
   };
 }
