@@ -6,6 +6,8 @@
 // these variables are called action types.
 export const ADD_MOVIES = "ADD_MOVIES";
 
+export const ADD_FAVOURITES = "ADD_FAVOURITES";
+
 //These are called action creators
 export function addMovies(movies) {
   return {
@@ -13,3 +15,11 @@ export function addMovies(movies) {
     movies,
   };
 }
+
+export function addFavourites(movie) {
+  return {
+    type: ADD_FAVOURITES,
+    movie,
+  };
+}
+
