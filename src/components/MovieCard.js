@@ -1,6 +1,6 @@
 import { render } from "@testing-library/react";
 import React from "react";
-import { addFavourites, removeUnfavourites } from "../actions";
+import { addFavourites, removeFromFavourites } from "../actions";
 
 class MovieCard extends React.Component {
   handleFavouritesClick = () => {
@@ -10,7 +10,9 @@ class MovieCard extends React.Component {
   };
 
   handleUnfavouritesClick = () => {
-  
+    const { movie } = this.props;
+
+    this.props.dispatch(removeFromFavourites(movie));
   };
 
   render() {
