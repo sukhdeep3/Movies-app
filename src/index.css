@@ -106,6 +106,7 @@ body {
   margin-right: 13px;
   border-radius: 3px;
   border: 1px solid #e1e1e1;
+  color: black;
 }
 .active-tabs {
   background: #2185d0 !important;
@@ -182,4 +183,7 @@ body {
   padding: 20px 0;
   font-size: 20px;
   color: #6d6d6d;
+}
+a {
+  text-decoration: none;
 }
