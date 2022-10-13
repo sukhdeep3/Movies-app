@@ -1,23 +1,22 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 // import { legacy_createStore as createStore } from "redux";
-import { legacy_createStore as createStore } from "redux";
+import { applyMiddleware, legacy_createStore as createStore } from "redux";
 import "./index.css";
 import App from "./components/App";
 import rootReducer from "./reducers";
 // import { createStore } from "redux";
 
-const store = createStore(rootReducer);
-// const store = createStore(movies);
-// console.log(store);
-// console.log(store.getState());
+const logger = function ({ dispatch, getState }) {
+  return function (next) {
+    return function (action) {
+      console.log("Action_type", action.type);
+      next(action);
+    };
+  };
+};
 
-// store.dispatch({
-//   type: "ADD_MOVIES",
-//   movies: [{ name: "don" }],
-// });
-
-// console.log("after State", store.getState());
+const store = createStore(rootReducer, applyMiddleware(logger));
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(<App store={store} />);
