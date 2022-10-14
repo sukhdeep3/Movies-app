@@ -3,6 +3,7 @@ import { data } from "../data";
 import Navbar from "./Navbar";
 import MovieCard from "./MovieCard";
 import { addMovies, setShowFavourites } from "../actions";
+import { StoreContext } from "../index";
 
 class App extends React.Component {
   componentDidMount() {
@@ -10,12 +11,12 @@ class App extends React.Component {
     //dispatch action
     const { store } = this.props;
 
-    store.subscribe(() => {
+    this.props.store.subscribe(() => {
       console.log("Updated");
       this.forceUpdate();
     });
 
-    store.dispatch(addMovies(data));
+    this.props.store.dispatch(addMovies(data));
 
     console.log("state", this.props.store.getState());
   }
@@ -37,7 +38,7 @@ class App extends React.Component {
   };
 
   render() {
-    const { movies } = this.props.store.getState();
+    const { movies, search } = this.props.store.getState();
 
     const { list, favourites, showFavourites } = movies;
     console.log("STATE", this.props.store.getState());
@@ -45,7 +46,7 @@ class App extends React.Component {
     const displayMovies = showFavourites ? favourites : list;
     return (
       <div className="App">
-        <Navbar />
+        <Navbar search={search} />
         <div className="main">
           <div className="tabs">
             <div
@@ -71,13 +72,23 @@ class App extends React.Component {
               />
             ))}
           </div>
-          {
-            displayMovies.length ===0 ? <div className="no-movies">No movies to display!</div>: null
-          }
+          {displayMovies.length === 0 ? (
+            <div className="no-movies">No movies to display!</div>
+          ) : null}
         </div>
       </div>
     );
   }
 }
 
-export default App;
+class AppWrapper extends React.Component{
+  render(){
+    return(
+      <StoreContext.Consumer>
+        {(store)=> <App store={store}/>}
+      </StoreContext.Consumer>
+    )
+  }
+}
+
+export default AppWrapper;
