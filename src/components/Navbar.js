@@ -1,6 +1,6 @@
 import React from "react";
 import { addMovieToList, handleMovieSearch } from "../actions";
-import { connect } from "../index";
+import { connect } from "react-redux";
 
 class Navbar extends React.Component {
   constructor(props) {
@@ -10,7 +10,7 @@ class Navbar extends React.Component {
     };
   }
   handleAddMovie = (movie) => {
-    this.props.store.dispatch(addMovieToList(movie));
+    this.props.dispatch(addMovieToList(movie));
     this.setState({
       showSearchResults: false,
     });
@@ -18,7 +18,7 @@ class Navbar extends React.Component {
 
   handleSearch = () => {
     const { searchText } = this.state;
-    this.props.store.dispatch(handleMovieSearch(searchText));
+    this.props.dispatch(handleMovieSearch(searchText));
   };
 
   handleChange = (e) => {
