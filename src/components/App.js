@@ -3,26 +3,26 @@ import { data } from "../data";
 import Navbar from "./Navbar";
 import MovieCard from "./MovieCard";
 import { addMovies, setShowFavourites } from "../actions";
-import { StoreContext } from "../index";
+import { connect } from "../index";
 
 class App extends React.Component {
   componentDidMount() {
     //make API call to get data
     //dispatch action
-    const { store } = this.props;
+    // const { store } = this.props;
 
-    this.props.store.subscribe(() => {
-      console.log("Updated");
-      this.forceUpdate();
-    });
+    // this.props.store.subscribe(() => {
+    //   console.log("Updated");
+    //   this.forceUpdate();
+    // });
 
-    this.props.store.dispatch(addMovies(data));
+    this.props.dispatch(addMovies(data));
 
-    console.log("state", this.props.store.getState());
+    // console.log("state", this.props.store.getState());
   }
 
   isFavouriteMovie = (movie) => {
-    const { movies } = this.props.store.getState();
+    const { movies } = this.props;
 
     const index = movies.favourites.indexOf(movie);
 
@@ -34,14 +34,14 @@ class App extends React.Component {
   };
 
   changeTab = (val) => {
-    this.props.store.dispatch(setShowFavourites(val));
+    this.props.dispatch(setShowFavourites(val));
   };
 
   render() {
-    const { movies, search } = this.props.store.getState();
+    const { movies, search } = this.props;
 
     const { list, favourites, showFavourites } = movies;
-    console.log("STATE", this.props.store.getState());
+    // console.log("STATE", this.props.store.getState());
 
     const displayMovies = showFavourites ? favourites : list;
     return (
@@ -67,7 +67,7 @@ class App extends React.Component {
               <MovieCard
                 movie={movie}
                 key={`movies-${index}`}
-                dispatch={this.props.store.dispatch}
+                dispatch={this.props.dispatch}
                 isFavourite={this.isFavouriteMovie(movie)}
               />
             ))}
@@ -91,12 +91,12 @@ class App extends React.Component {
 //   }
 // }
 
-function callback(state) {
+function mapStateToProps(state) {
   return {
     movies: state.movies,
     search: state.search,
   };
 }
-const connectedAppComponent = connect(callback)(App);
+const connectedAppComponent = connect(mapStateToProps)(App);
 
 export default connectedAppComponent;
