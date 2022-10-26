@@ -7,18 +7,8 @@ import { connect } from "react-redux";
 
 class App extends React.Component {
   componentDidMount() {
-    //make API call to get data
-    //dispatch action
-    // const { store } = this.props;
-
-    // this.props.store.subscribe(() => {
-    //   console.log("Updated");
-    //   this.forceUpdate();
-    // });
 
     this.props.dispatch(addMovies(data));
-
-    // console.log("state", this.props.store.getState());
   }
 
   isFavouriteMovie = (movie) => {
@@ -81,15 +71,6 @@ class App extends React.Component {
   }
 }
 
-// class AppWrapper extends React.Component {
-//   render() {
-//     return (
-//       <StoreContext.Consumer>
-//         {(store) => <App store={store} />}
-//       </StoreContext.Consumer>
-//     );
-//   }
-// }
 
 function mapStateToProps(state) {
   return {

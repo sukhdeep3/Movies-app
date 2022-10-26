@@ -27,7 +27,6 @@ class Navbar extends React.Component {
     });
   };
   render() {
-    // console.log(this.props.search.result);
     const { result: movie, showSearchResults } = this.props.search;
     return (
       <div className="nav">
@@ -54,15 +53,6 @@ class Navbar extends React.Component {
     );
   }
 }
-// class NavWrapper extends React.Component {
-//   render() {
-//     return (
-//       <StoreContext.Consumer>
-//         {(store) => <Navbar store={store} search={this.props.search} />}
-//       </StoreContext.Consumer>
-//     );
-//   }
-// }
 
 function mapStateToProps({ search }) {
   return {
