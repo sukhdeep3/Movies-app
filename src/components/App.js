@@ -7,13 +7,11 @@ import { connect } from "react-redux";
 
 class App extends React.Component {
   componentDidMount() {
-
     this.props.dispatch(addMovies(data));
   }
 
   isFavouriteMovie = (movie) => {
     const { movies } = this.props;
-
     const index = movies.favourites.indexOf(movie);
 
     if (index !== -1) {

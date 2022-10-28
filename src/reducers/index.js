@@ -50,6 +50,7 @@ export function movies(state = initialMoviesState, action) {
   }
 }
 
+
 const initialSearchState = {
   result: {},
   showSearchResults: false,
