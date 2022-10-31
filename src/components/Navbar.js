@@ -9,6 +9,7 @@ class Navbar extends React.Component {
       searchText: "",
     };
   }
+
   handleAddMovie = (movie) => {
     this.props.dispatch(addMovieToList(movie));
     this.setState({
@@ -26,6 +27,7 @@ class Navbar extends React.Component {
       searchText: e.target.value,
     });
   };
+  
   render() {
     const { result: movie, showSearchResults } = this.props.search;
     return (

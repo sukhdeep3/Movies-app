@@ -1,4 +1,3 @@
-
 import React from "react";
 import { addFavourites, removeFromFavourites } from "../actions";
 
