@@ -27,9 +27,10 @@ class Navbar extends React.Component {
       searchText: e.target.value,
     });
   };
-  
+
   render() {
     const { result: movie, showSearchResults } = this.props.search;
+
     return (
       <div className="nav">
         <div className="search-container">
